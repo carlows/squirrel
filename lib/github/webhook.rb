@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Webhook
+class Github::Webhook
   WebhookSignatureError = Class.new(StandardError)
 
   def self.verify_signature(request)

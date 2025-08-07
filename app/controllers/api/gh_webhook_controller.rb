@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "github/webhook"
+
 module Api
   class GhWebhookController < BaseController
     before_action :verify_github_webhook, only: [ :create ]
@@ -23,7 +25,7 @@ module Api
     private
 
     def verify_github_webhook
-      Webhook.verify_signature(request)
+      Github::Webhook.verify_signature(request)
     rescue Webhook::WebhookSignatureError => e
       render_error e.message, :unauthorized
     end
