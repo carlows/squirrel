@@ -71,6 +71,6 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
 
   config.hosts = [
-    "cyan-states-fix.loca.lt"
+    "slick-rules-stand.loca.lt"
   ]
 end

@@ -7,16 +7,15 @@ module Api
     before_action :verify_github_webhook, only: [ :create ]
 
     def create
-      # Handle the webhook payload
       event_type = request.headers["X-GitHub-Event"]
+      payload = JSON.parse(request.raw_post)
 
       case event_type
       when "ping"
         render json: { message: "pong" }
-      when "push", "pull_request", "issues"
-        # Process the webhook payload
-        # You can add specific handling for different event types here
-        render json: { message: "Received #{event_type} event" }
+      when "pull_request"
+        GithubPullRequestHandler.new(payload).handle
+        render json: { message: "ok" }
       else
         render_error "Unsupported event type: #{event_type}", :bad_request
       end
