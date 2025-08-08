@@ -17,7 +17,8 @@ class StartCodeReviewerService
       "*This message will self-destruct... just kidding, i'm just a squirrel!* 🌰"
     )
     repo_download_url = client.get_zipball_url(pr["head"]["repo"]["full_name"], pr["head"]["ref"])
-    puts "repo_download_url: #{repo_download_url}"
+    Rails.logger.info "repo_download_url: #{repo_download_url}"
+    DownloadRepoJob.perform_later(repo_download_url)
   end
 
   private

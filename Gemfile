@@ -22,6 +22,10 @@ gem "tailwindcss-rails"
 gem "jbuilder"
 gem "octokit"
 gem "jwt"
+gem "rubyzip"
+gem "faraday-retry"
+gem "faraday-follow_redirects"
+gem "mission_control-jobs"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
