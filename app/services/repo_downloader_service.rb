@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require "faraday"
+require "faraday/retry"
+require "faraday/follow_redirects"
 require "zip"
 require "securerandom"
 require "fileutils"
@@ -41,6 +43,7 @@ class RepoDownloaderService
     zip_file_path = File.join(temp_dir, "repo.zip")
 
     conn = Faraday.new do |f|
+      f.request :retry, max: 2, interval: 0.05
       f.response :follow_redirects
       f.adapter Faraday.default_adapter
     end
@@ -61,13 +64,8 @@ class RepoDownloaderService
   def extract_zip_file(zip_file_path, temp_dir)
     Zip::File.open(zip_file_path) do |zip_file|
       zip_file.each do |entry|
-        # Create the full path for extraction
         entry_path = File.join(temp_dir, entry.name)
-
-        # Create directory if needed
         FileUtils.mkdir_p(File.dirname(entry_path))
-
-        # Extract the file
         entry.extract(entry_path) unless File.exist?(entry_path)
       end
     end
