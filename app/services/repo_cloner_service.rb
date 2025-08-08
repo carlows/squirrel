@@ -7,7 +7,7 @@ class RepoClonerService
   end
 
   def clone
-    Git.clone(@clone_url, clone_folder)
+    Git.clone(@clone_url, clone_folder, mirror: true)
   end
 
   def clone_folder
