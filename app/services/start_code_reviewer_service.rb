@@ -10,11 +10,11 @@ class StartCodeReviewerService
     client.add_comment(
       pr["head"]["repo"]["full_name"],
       pr["number"],
-      "🕵️‍♂️🐿️ *Agent Squirrel reporting for duty!*\n\n" \
+      "🕵️‍♂️🐿️ *Agent Scrat reporting for duty!*\n\n" \
       "Greetings Agent #{pr["user"]["login"]}! I've infiltrated your PR and while my operatives analyze the code, " \
       "here's a classified joke from our intelligence department:\n\n" \
       "#{ruby_jokes.sample}\n\n" \
-      "*This message will self-destruct... just kidding, it's a permanent git commit!* 🌰"
+      "*This message will self-destruct... just kidding, i'm just a squirrel!* 🌰"
     )
     repo_download_url = client.get_zipball_url(pr["head"]["repo"]["full_name"], pr["head"]["ref"])
     puts "repo_download_url: #{repo_download_url}"
