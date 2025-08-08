@@ -10,8 +10,8 @@ class GithubPullRequestHandler
   def handle
     action = payload["action"]
 
-    if action == "opened"
-      CodeReviewerService.start(payload)
+    if action == "opened" || action == "reopened"
+      StartCodeReviewerService.start(payload)
     end
   end
 end

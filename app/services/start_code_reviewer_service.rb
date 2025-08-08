@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CodeReviewerService
+class StartCodeReviewerService
   def self.start(payload)
     pr = payload["pull_request"]
     installation_id = payload["installation"]["id"]
