@@ -11,4 +11,8 @@ class GithubClient
   def add_comment(repo, pr_number, comment)
     @client.add_comment(repo, pr_number, comment)
   end
+
+  def get_zipball_url(repo, ref)
+    @client.archive_link(repo, ref: ref, format: :zipball)
+  end
 end
