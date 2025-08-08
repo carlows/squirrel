@@ -22,7 +22,7 @@ class StartCodeReviewerService
 
   private
 
-  def ruby_jokes
+  def self.ruby_jokes
     [
       "Why do Ruby developers always carry a first aid kit? In case they get a NIL pointer! 💎",
       "What's a Ruby developer's favorite drink? Gem and tonic! 🍸",
